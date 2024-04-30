@@ -11,9 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('managers', function (Blueprint $table) {
+        Schema::create('annonces', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
+
+            $table->string('description');
+            $table->string('titre');
+            $table->string('image');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -23,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('managers');
+        Schema::dropIfExists('annonces');
     }
 };
