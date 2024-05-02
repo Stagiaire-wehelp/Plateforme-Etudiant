@@ -28,7 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [LoginController::class, 'login']);
 //Route::post('/register', [RegisterController::class, 'register']);
 
-Route::get('/accounts', [AccountController::class,'index']);
+Route::middleware(['auth:api', 'role:administrateur'])->get('/accounts', [AccountController::class,'index']);
 Route::get('/accounts/{account}', [AccountController::class,'show']);
 Route::post('/accounts', [AccountController::class,'store']);
 Route::put('/accounts/{account}', [AccountController::class,'update']);
@@ -45,3 +45,6 @@ Route::get('/candidatures/{candidature}', [CandidatureController::class,'show'])
 Route::post('/candidatures', [CandidatureController::class,'store']);
 Route::put('/candidatures/{candidature}', [CandidatureController::class,'update']);
 Route::delete('/candidatures/{candidature}', [CandidatureController::class,'delete']);
+
+
+//Route::middleware(['auth:api', 'role:etudiant,administrateur'])->get('/etudiantsE', [RegisterController::class, 'getAllUsers'])

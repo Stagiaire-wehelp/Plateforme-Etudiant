@@ -88,12 +88,11 @@ class User extends Authenticatable
         return $this->attributes['role'];
     }
 
-    public function isadmin(){
-        if($this->attributes['role']=='administrateur')
-        return true;
-        else
-        return false;
+    public function hasRole($role)
+    {
+        return $this->role === $role;
     }
+
 
     public function annonces(){
         return $this->hasMany(Annonce::class);
