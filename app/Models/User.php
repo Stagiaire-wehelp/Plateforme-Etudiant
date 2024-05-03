@@ -36,7 +36,10 @@ class User extends Authenticatable
         'role',
         'nom_Organization',
         'level',
-        'Date_Graduation'
+        'pays_id',
+        'ville_id',
+        'Date_Graduation',
+
     ];
 
 
@@ -97,7 +100,27 @@ class User extends Authenticatable
     public function annonces(){
         return $this->hasMany(Annonce::class);
     }
+
     public function candidatures(){
         return $this->hasMany(Candidature::class);
     }
+
+    public function pays()
+    {
+        return $this->belongsTo(Pays::class);
+    }
+
+    public function villes()
+    {
+        return $this->belongsTo(Ville::class);
+
+    }
+
+    public function forumdiscussions(){
+        return $this->hasMany(ForumDiscussion::class);
+    }
+    public function commentaires(){
+        return $this->hasMany(Commentaire::class);
+    }
+
 }
