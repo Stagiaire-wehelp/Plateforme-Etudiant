@@ -2,15 +2,25 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+
+    // Définir les rôles valides comme une énumération
+    const ROLES = [
+        'administrateur',
+        'etudiant',
+        'annonceur',
+        'responsable_universitaire',
+        'manager',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -18,10 +28,20 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nom',
+        'prenom',
         'email',
         'password',
+        'tel',
+        'role',
+        'nom_Organization',
+        'level',
+        'pays_id',
+        'ville_id',
+        'Date_Graduation',
+
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,4 +62,65 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Boot the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Méthode appelée lors de la création d'un nouvel utilisateur
+        static::creating(function ($user) {
+            // Si le rôle fourni n'est pas valide, utilisez le premier rôle de la liste
+            if (!in_array($user->role, self::ROLES)) {
+                $user->role = self::ROLES[1];
+            }
+        });
+    }
+
+    /**
+     * Get the user's role.
+     *
+     * @return string|null
+     */
+    public function getRoleAttribute()
+    {
+        return $this->attributes['role'];
+    }
+
+    public function hasRole($role)
+    {
+        return $this->role === $role;
+    }
+
+
+    public function annonces(){
+        return $this->hasMany(Annonce::class);
+    }
+
+    public function candidatures(){
+        return $this->hasMany(Candidature::class);
+    }
+
+    public function pays()
+    {
+        return $this->belongsTo(Pays::class);
+    }
+
+    public function villes()
+    {
+        return $this->belongsTo(Ville::class);
+
+    }
+
+    public function forumdiscussions(){
+        return $this->hasMany(ForumDiscussion::class);
+    }
+    public function commentaires(){
+        return $this->hasMany(Commentaire::class);
+    }
+
 }
