@@ -20,6 +20,10 @@ class ForumDiscussionController extends Controller
         return response()->json($forum);
     }
 
+
+  
+
+
     public function store(){
 
         $formfield = request()->validate([

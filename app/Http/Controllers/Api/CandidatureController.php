@@ -66,7 +66,7 @@ class CandidatureController extends Controller
     public function delete(Candidature $candidature){
 
         $candidature->delete();
-        return response()->json(['message' => 'Annonce supprimée avec succès']);
+        return response()->json(['message' => 'Candidature supprimée avec succès']);
     }
 
 
