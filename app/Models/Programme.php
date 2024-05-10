@@ -25,4 +25,8 @@ class Programme extends Model
                 'ecole_id'
     ];
     use HasFactory;
+
+    public function candidatures(){
+        return $this->hasMany(Candidature::class);
+    }
 }

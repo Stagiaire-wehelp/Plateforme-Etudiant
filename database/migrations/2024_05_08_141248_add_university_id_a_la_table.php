@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('coup_de_projecteurs', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->text('description');
-            $table->string('titre');
+        Schema::table('forum_discussions', function (Blueprint $table) {
+            $table->unsignedBigInteger('universitaire_id');
+            $table->foreign('universitaire_id')->references('id')->on('universitaires');
         });
-
-
     }
 
     /**
@@ -26,7 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('coup_de_projecteurs');
-
+        Schema::table('forum_discussions', function (Blueprint $table) {
+            //
+        });
     }
 };

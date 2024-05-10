@@ -82,4 +82,12 @@ class AccountController extends Controller
         $account->delete();
         return response()->json(['message' => 'Compte supprimé avec succès']);
     }
+
+
+    public function allUniversitaire(User $account){
+
+        $all_universitaire_manager=$account->universitaires;
+        return response()->json($all_universitaire_manager);
+
+    }
 }

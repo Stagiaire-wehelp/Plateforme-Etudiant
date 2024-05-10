@@ -16,9 +16,13 @@ class ForumDiscussion extends Model
         return $this->belongsTo(User::class);
     }
 
-    
+
     public function commentaires(){
         return $this->hasMany(Commentaire::class);
+    }
+
+    public function universitaire(){
+        return $this->belongsTo(Universitaire::class);
     }
 
 }

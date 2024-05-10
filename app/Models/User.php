@@ -123,4 +123,14 @@ class User extends Authenticatable
         return $this->hasMany(Commentaire::class);
     }
 
+    public function universitaires(){//les universiter de manager
+        return $this->hasMany(Universitaire::class);
+    }
+
+    public function domain()
+    {
+        return $this->belongsTo(DomaineEtude::class);
+    }
+
+
 }

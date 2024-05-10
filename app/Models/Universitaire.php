@@ -13,11 +13,11 @@ class Universitaire extends Model
         public function universiteStatistique(){
             return $this->hasMany(\App\Models\UniversiteStatistique::class);
             }
-    
+
             public function evenements(){
             return $this->hasMany(\App\Models\Evenement::class);
             }
-        
+
             public function offres(){
                 return $this->hasMany(\App\Models\Offre::class);
                 }
@@ -25,4 +25,17 @@ class Universitaire extends Model
         'adresse','nom','site_web','type','tel'
     ];
     use HasFactory;
+
+
+
+    public function forum_discussions(){
+        return $this->hasMany(ForumDiscussion::class);
+    }
+
+    public function manager(){
+        return $this->belongsTo(User::class);
+    }
+
+
+
 }

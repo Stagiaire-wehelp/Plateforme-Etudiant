@@ -21,10 +21,10 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::table('ecoles', function(Blueprint $table){
-            $table->foreignIdFor(\App\Models\Universitaire::class)->nullable()->constrained()->cascadeOnDelete(); 
-       }); 
+            $table->foreignIdFor(\App\Models\Universitaire::class)->nullable()->constrained()->cascadeOnDelete();
+       });
 
-       
+
     }
 
     /**
@@ -35,10 +35,10 @@ return new class extends Migration
         Schema::dropIfExists('universitaires');
         Schema::table('ecoles', function(Blueprint $table) {
             $table->dropForeignIdFor(\App\Models\Universitaire::class);
-        }); 
+        });
         Schema::table('evenements', function(Blueprint $table) {
             $table->dropForeignIdFor(\App\Models\Universitaire::class);
-        }); 
+        });
         Schema::table('offres', function(Blueprint $table) {
             $table->dropForeignIdFor(\App\Models\Universitaire::class);
         });

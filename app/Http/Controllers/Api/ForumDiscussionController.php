@@ -10,7 +10,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\ForumDiscussion;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\Universitaire;
 
 class ForumDiscussionController extends Controller
 {
@@ -58,6 +58,15 @@ class ForumDiscussionController extends Controller
 
             $forum->commentaires;
             return response()->json($forum);
+
+        }
+        
+
+        public function allforumUniversity(Universitaire $universitaire){//tous les forum est les commentaire de chaque forum
+
+            $all_forum_universitaire=$universitaire->forum_discussions()->with('commentaires')->get();
+
+            return response()->json($all_forum_universitaire);
 
         }
 

@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class DomaineEtude extends Model
-{   
-    
+{
+
     public function programme(){
         return $this->belongsTo(\App\Models\Programme::class);
     }
@@ -21,4 +21,9 @@ class DomaineEtude extends Model
         'programme_id'
     ];
     use HasFactory;
+
+    public function users(){
+        return $this->hasMany(User::class);
+    }
+
 }

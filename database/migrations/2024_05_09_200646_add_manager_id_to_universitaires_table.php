@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('coup_de_projecteurs', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->text('description');
-            $table->string('titre');
+        Schema::table('universitaires', function (Blueprint $table) {
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
-
-
     }
 
     /**
@@ -26,7 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('coup_de_projecteurs');
-
+        Schema::table('universitaires', function (Blueprint $table) {
+            //
+        });
     }
 };
