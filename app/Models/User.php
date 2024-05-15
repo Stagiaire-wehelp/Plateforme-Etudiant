@@ -123,7 +123,7 @@ class User extends Authenticatable
         return $this->hasMany(Commentaire::class);
     }
 
-    public function universitaires(){//les universiter de manager
+    public function universitaires(){
         return $this->hasMany(Universitaire::class);
     }
 

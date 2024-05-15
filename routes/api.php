@@ -39,7 +39,7 @@ use App\Models\Programme;
 Route::post('/login', [LoginController::class, 'login']);
 
 
-Route::middleware(['auth:api'])->group(function () {
+Route::middleware([])->group(function () {
         Route::get('/universitaires', [UniversitaireController::class, 'index']);
         Route::post('/universitaires', [UniversitaireController::class, 'creerUniversitaire']);
         Route::get('/universitaires/{id}', [UniversitaireController::class, 'showUniversitaire'])->middleware('update.visite.universite');
@@ -62,7 +62,7 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('/ecoles', [EcoleController::class, 'index']);
         Route::post('/ecoles', [EcoleController::class, 'creerEcole']);
         Route::get('/ecoles/{id}', [EcoleController::class, 'showEcole']);
-        Route::put('/ecoles/{id}', [EcoleController::class, 'updateEcole']);
+        Route::post('/ecoles/{id}', [EcoleController::class, 'updateEcole']);
         Route::delete('/ecoles/{id}', [EcoleController::class, 'destroyEcole']);
         Route::get('ecoles/{id}/programmes', [EcoleController::class, 'programmesParEcole']);
 
@@ -108,15 +108,15 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('/accounts', [AccountController::class,'index']);
         Route::get('/accounts/{account}', [AccountController::class,'show']);
         Route::post('/accounts', [AccountController::class,'store']);
-        Route::put('/accounts/{account}', [AccountController::class,'update']);
+        Route::post('/accounts/{account}', [AccountController::class,'update']);
         Route::delete('/accounts/{account}', [AccountController::class,'delete']);
 
-        Route::get('/accounts/managers/{account}', [AccountController::class,'allUniversitaire']);
+        Route::get('/accounts/user/{account}', [AccountController::class,'allUniversitaire']);
 
         Route::get('/annonces', [AnnonceController::class,'index']);
         Route::get('/annonces/{annonce}', [AnnonceController::class,'show']);
         Route::post('/annonces', [AnnonceController::class,'store']);
-        Route::put('/annonces/{annonce}', [AnnonceController::class,'update']);
+        Route::post('/annonces/{annonce}', [AnnonceController::class,'update']);
         Route::delete('/annonces/{annonce}', [AnnonceController::class,'delete']);
 
         Route::get('/candidatures', [CandidatureController::class,'index']);

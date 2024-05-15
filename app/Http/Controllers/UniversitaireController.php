@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class UniversitaireController extends Controller
 {
     public function index()
-    {   
+    {
         try {
             $universitaires = Universitaire::all();
             return response()->json($universitaires);
@@ -23,14 +23,28 @@ class UniversitaireController extends Controller
     }
 
     public function creerUniversitaire(UniversitaireRequest $request)
-    {
-        try {
-            $universitaires = Universitaire::create($request->validated());
-            return response()->json(['message' => 'Universitaire créé avec succès', 'universitaire' => $universitaires], 201);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Erreur lors de la création du universitaire'], 500);
+{
+
+         $formfield = $request->validate([
+            'adresse' => 'required|string',
+            'nom' => 'required|string',
+            'site_web' => 'nullable',
+            'type' => 'required|string',
+            'tel' => 'required|string',
+            'user_id' => 'required|exists:users,id',
+
+        ]);
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('universitaire', 'public');
+            $formfield['image'] = $imagePath;
         }
-    }
+
+        $universitaire = Universitaire::create( $formfield);
+        return response()->json(['message' => 'Universitaire créé avec succès', 'universitaire' => $universitaire], 201);
+
+}
+
+
 
     public function showUniversitaire($id)
     {
@@ -41,18 +55,35 @@ class UniversitaireController extends Controller
         return response()->json($universitaire);
     }
 
+
+
     public function updateUniversitaire(UniversitaireRequest $request, $id)
     {
         $universitaire = Universitaire::find($id);
+
         if (!$universitaire) {
+
             return response()->json(['message' => 'universitaire introuvable'], 404);
         }
-        try {
-            $universitaire->update($request->validated());
+
+
+            $formfield = $request->validate([
+                'adresse' => 'string',
+                'nom' => 'string',
+                'site_web' => 'nullable',
+                'type' => 'string',
+                'tel' => 'string',
+                'user_id' => 'exists:users,id',
+            ]);
+
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('universitaire', 'public');
+                $formfield['image'] = $imagePath;
+            }
+
+            $universitaire->update($formfield);
             return response()->json(['message' => 'universitaire modifié avec succès']);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Erreur lors de la modification du universitaire'], 500);
-        }
+
     }
 
     public function destroyUniversitaire($id)
@@ -113,7 +144,7 @@ class UniversitaireController extends Controller
 
         $offre = Offre::where('universitaire_id', $id)->where('type_offre', $type)->get();
         return response()->json(['universitaire' => $universitaire, 'offres' => $offre]);
-       
+
     }
 
     public function statistiqueUniversitaire($id)

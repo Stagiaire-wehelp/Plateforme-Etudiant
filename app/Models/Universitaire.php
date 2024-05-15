@@ -22,7 +22,7 @@ class Universitaire extends Model
                 return $this->hasMany(\App\Models\Offre::class);
                 }
     protected $fillable=[
-        'adresse','nom','site_web','type','tel'
+        'adresse','nom','site_web','type','tel','user_id','image'
     ];
     use HasFactory;
 
@@ -32,10 +32,8 @@ class Universitaire extends Model
         return $this->hasMany(ForumDiscussion::class);
     }
 
-    public function manager(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
-
-
 
 }

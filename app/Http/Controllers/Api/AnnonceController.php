@@ -18,26 +18,37 @@ class AnnonceController extends Controller
         return response()->json($annonce);
     }
 
-    public function store(){
-
-        $formfield = request()->validate([
+    public function store(Request $request)
+    {
+        $formFields = $request->validate([
             'titre' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'required',
+            'image' => 'image',
             'user_id' => 'required|exists:users,id',
         ]);
-         $annonce=Annonce::create($formfield);
-         return response()->json([$annonce]);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('annonce', 'public');
+            $formFields['image'] = $imagePath;
+        }
+        $annonce = Annonce::create($formFields);
+        return response()->json($annonce);
     }
 
-    public function update(Annonce $annonce){
 
-        $formfield = request()->validate([
+    public function update(Annonce $annonce,Request $request){
+
+        $formfield =$request->validate([
             'titre' => 'string|max:255',
             'description' => 'string',
-            'image' => '',
+            'image' => 'nullable|image',
             'user_id' => 'exists:users,id',
         ]);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('annonce', 'public');
+            $formfield['image'] = $imagePath;
+        }
 
         $annonce->update($formfield);
 
@@ -45,7 +56,7 @@ class AnnonceController extends Controller
     }
 
     public function delete(Annonce $annonce){
-        
+
         $annonce->delete();
         return response()->json(['message' => 'Annonce supprimée avec succès']);
     }

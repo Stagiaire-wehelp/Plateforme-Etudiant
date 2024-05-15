@@ -86,8 +86,8 @@ class AccountController extends Controller
 
     public function allUniversitaire(User $account){
 
-        $all_universitaire_manager=$account->universitaires;
-        return response()->json($all_universitaire_manager);
+        $all_universitaire_user=$account->universitaires;
+        return response()->json($all_universitaire_user);
 
     }
 }

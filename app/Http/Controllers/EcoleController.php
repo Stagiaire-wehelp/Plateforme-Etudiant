@@ -26,14 +26,21 @@ class EcoleController extends Controller
      * Show the form for creating a new resource.
      */
     public function creerEcole(EcoleRequest $request)
-    {
-        try {
-            $ecole = Ecole::create($request->validated());
-            return response()->json(['message' => 'Ecole créée avec succès', 'ecole' => $ecole], 201);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Erreur lors de la création de l\'école'], 500);
+{
+    try {
+        $formfield = $request->validated();
+
+        if ($request->hasFile('image')) {
+
+            $imagePath = $request->file('image')->store('ecole', 'public');
+            $formfield['image'] = $imagePath;
         }
+        $ecole = Ecole::create($formfield);
+        return response()->json(['message' => 'Ecole créée avec succès', 'ecole' => $ecole], 201);
+    } catch (\Exception $e) {
+        return response()->json(['message' => 'Erreur lors de la création de l\'école'], 500);
     }
+}
 
     /**
      * Display the specified resource.
@@ -50,19 +57,26 @@ class EcoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateEcole(EcoleRequest $request, $id)
-    {
-        $ecole = Ecole::find($id);
-        if (!$ecole) {
-            return response()->json(['error' => 'Ecole introuvable'], 404);
-        }
-        try {
-            $ecole->update($request->validated());
-            return response()->json(['message' => 'Ecole mise à jour avec succès']);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Erreur lors de la mise à jour de l\'école'], 500);
-        }
+
+public function updateEcole(EcoleRequest $request,$id)
+{
+    $ecole = Ecole::find($id);
+    if (!$ecole) {
+        return response()->json(['error' => 'Ecole introuvable'], 404);
     }
+    try {
+
+        $formfield = $request->validated();
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('ecole', 'public');
+            $formfield['image'] = $imagePath;
+        }
+        $ecole->update($formfield);
+        return response()->json(['message' => 'Ecole mise à jour avec succès']);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Erreur lors de la mise à jour de l\'école'], 500);
+    }
+}
 
     /**
      * Remove the specified resource from storage.

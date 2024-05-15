@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Ecole extends Model
-{   
+{
     public function programmes(){
         return $this->hasMany(\App\Models\Programme::class);
         }
@@ -18,7 +18,7 @@ class Ecole extends Model
         return $this->belongsTo(\App\Models\Universitaire::class);
     }
     protected $fillable = [
-        'abreviation', 'title','universitaire_id'	
+        'abreviation', 'title','universitaire_id','image'
     ];
     use HasFactory;
 }
