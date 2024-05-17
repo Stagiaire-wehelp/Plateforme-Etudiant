@@ -132,5 +132,9 @@ class User extends Authenticatable
         return $this->belongsTo(DomaineEtude::class);
     }
 
+    public function managerUniversitaires()
+    {
+        return $this->hasMany(ManagerUniversitaire::class);
+    }
 
 }

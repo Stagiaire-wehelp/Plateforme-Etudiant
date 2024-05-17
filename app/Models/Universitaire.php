@@ -36,4 +36,9 @@ class Universitaire extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function managerUniversitaire()
+    {
+        return $this->hasOne(ManagerUniversitaire::class);
+    }
+
 }

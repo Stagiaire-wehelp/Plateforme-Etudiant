@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CandidatureController;
 use App\Http\Controllers\Api\CommentaireController;
 use App\Http\Controllers\Api\ForumDiscussionController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\ManagerUniversitaireController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\PaysController;
 use App\Http\Controllers\Api\VilleController;
@@ -50,6 +51,14 @@ Route::middleware([])->group(function () {
         Route::get('universitaires/{id}/offres', [UniversitaireController::class, 'offresparUniversitaire']);
         Route::get('universitaires/{id}/offres/{type}', [UniversitaireController::class, 'offres_filtre']);
         Route::get('universitaires/{id}/statistiques', [UniversitaireController::class, 'statistiqueUniversitaire']);
+
+
+        //opération sur les managers
+        Route::get('Manageruniversitaires/{manager}', [ManagerUniversitaireController::class, 'universitesUtilisateur']);
+        Route::post('Manageruniversitaires/{manager}', [ManagerUniversitaireController::class, 'insererRelations']);
+        Route::delete('Manageruniversitaires/{managerid}/{universiteId}', [ManagerUniversitaireController::class, 'supprimerRelation']);
+        Route::post('Manageruniversitaires/multidelete/{manager}', [ManagerUniversitaireController::class, 'supprimerRelationsMultiple']);
+
 
 
 
@@ -111,7 +120,7 @@ Route::middleware([])->group(function () {
         Route::post('/accounts/{account}', [AccountController::class,'update']);
         Route::delete('/accounts/{account}', [AccountController::class,'delete']);
 
-        Route::get('/accounts/user/{account}', [AccountController::class,'allUniversitaire']);
+        Route::get('/accounts/user/{account}', [AccountController::class,'responsableUniversitaire']);
 
         Route::get('/annonces', [AnnonceController::class,'index']);
         Route::get('/annonces/{annonce}', [AnnonceController::class,'show']);
@@ -160,6 +169,8 @@ Route::middleware([])->group(function () {
         Route::post('/commantaire', [CommentaireController::class,'store']);
         Route::put('/commantaire/{commentaire}', [CommentaireController::class,'update']);
         Route::delete('/commantaire/{commentaire}', [CommentaireController::class,'delete']);
+
+
 
 
 
