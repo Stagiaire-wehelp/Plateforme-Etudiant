@@ -1,6 +1,10 @@
+
+
 <h1 align="center">API DOCUMENTATION</h1>
 
 All routes starts with /api
+
+### Partie Abdlhamid ##
 ### Universitaire
 
 #### Add a new universite
@@ -797,3 +801,1012 @@ PUT /coupProjecteurs/{id}
 ### supprimer un coup projecteur
 delete /coupProjecteurs/{id}
 
+### Partie MoHAMED ###
+
+#### Authenticate 
+
+```
+POST /api/login
+```
+```json
+{
+	"email": "etudiant2@gmail.com",
+	"password": "123456789"
+}
+```
+
+### users
+
+#### get all users
+```
+GET /api/accounts
+
+```
+```json
+
+
+{
+	{
+        "id": 1,
+        "nom": "nnn",
+        "prenom": "fjjhh",
+        "email": "adj@gmail.com",
+        "email_verified_at": null,
+        "tel": "05555555",
+        "role": "responsable_universitaire",
+        "nom_Organization": "Nom de l'organisation",
+        "level": "Bac+2",
+        "pays_id": null,
+        "ville_id": 2,
+        "Date_Graduation": "2222-02-02",
+        "created_at": "2024-04-25T13:29:04.000000Z",
+        "updated_at": "2024-05-02T12:55:59.000000Z",
+        "deleted_at": null
+    },
+    {
+        "id": 2,
+        "nom": "tets",
+        "prenom": "test",
+        "email": "etudiant2@gmail.com",
+        "email_verified_at": null,
+        "tel": "055555555",
+        "role": "etudiant",
+        "nom_Organization": null,
+        "level": "Bac+5",
+        "pays_id": null,
+        "ville_id": 0,
+        "Date_Graduation": "2222-02-02",
+        "created_at": "2024-04-25T13:31:08.000000Z",
+        "updated_at": "2024-04-25T13:31:08.000000Z",
+        "deleted_at": null
+    }
+}
+
+```
+
+#### get user
+
+```
+GET /api/accounts/{user}
+```
+```json
+{
+    "id": 1,
+    "nom": "nnn",
+    "prenom": "fjjhh",
+    "email": "adj@gmail.com",
+    "email_verified_at": null,
+    "tel": "05555555",
+    "role": "responsable_universitaire",
+    "nom_Organization": null,
+    "level": null,
+    "pays_id": null,
+    "ville_id": null,
+    "Date_Graduation": null,
+    "created_at": "2024-04-25T13:29:04.000000Z",
+    "updated_at": "2024-05-02T12:55:59.000000Z",
+    "deleted_at": null
+}
+```
+
+
+#### create user
+
+```
+POST /api/accounts
+```
+
+
+```json
+
+{
+    "nom": "fgfgf",
+    "prenom": "fjjhh",
+    "email": "ttttdfdjjfghd@example.com",
+    "password": "motdepasse",
+    "tel": "123456789",
+    "role": "administrateur",
+    "nom_Organization": null,
+    "level": null,
+    "ville_id":null,
+    "pays_id":null,
+    "Date_Graduation": null,
+	"created_at": "2024-04-25T13:29:04.000000Z",
+    "updated_at": "2024-05-02T12:55:59.000000Z",
+    "deleted_at": null
+}
+
+```
+
+#### update user
+
+```
+PUT api/accounts/1
+```
+
+```json
+
+{
+    "nom": "nnn",
+    "prenom": "fjjhh",
+    "email": "adj@gmail.com",
+    "password": "123456789",
+    "tel": "05555555",
+    "role": "administrateur",
+    "nom_Organization": null,
+    "level": null,
+    "ville_id":null,
+    "pays_id":null,
+    "Date_Graduation": null,
+	"created_at": "2024-04-25T13:29:04.000000Z",
+    "updated_at": "2024-05-02T12:55:59.000000Z",
+    "deleted_at": null
+}
+
+```
+
+#### delete user
+
+```
+DELETE api/accounts/1
+```
+
+```json
+
+{
+   
+    "message": "Compte supprimé avec succès"
+
+}
+
+```
+
+
+#### get all university of a manager
+
+```
+GET api/accounts/managers/{user}
+```
+
+```json
+
+{
+   
+    [
+    {
+        "id": 2,
+        "adresse": "dswxc",
+        "nom": "MLY",
+        "site_web": "xvd",
+        "type": "vdx",
+        "tel": "vx744",
+        "created_at": null,
+        "updated_at": null,
+        "user_id": 2
+    },
+    {
+        "id": 3,
+        "adresse": "universt",
+        "nom": "Mohammadia",
+        "site_web": "dfgdf",
+        "type": "df",
+        "tel": "5563",
+        "created_at": null,
+        "updated_at": null,
+        "user_id": 2
+    }
+]
+
+}
+
+```
+
+
+### Candidatures
+
+
+#### get all candidatures
+
+```
+GET /api/candidatures
+```
+
+```json
+[
+    {
+        "id": 2,
+        "choix": "test",
+        "diplome": "test",
+        "lettre_de_motivation": "test",
+        "releves_de_notes": "test",
+        "user_id": 4,
+        "deleted_at": null,
+        "created_at": "2024-04-25T15:27:48.000000Z",
+        "updated_at": "2024-04-25T15:27:48.000000Z"
+    },
+    {
+        "id": 3,
+        "choix": "test",
+        "diplome": "tesytt",
+        "lettre_de_motivation": "test",
+        "releves_de_notes": "test",
+        "user_id": 4,
+        "deleted_at": null,
+        "created_at": "2024-04-25T15:27:56.000000Z",
+        "updated_at": "2024-04-25T15:27:56.000000Z"
+    }
+]
+```
+
+#### get candidature
+
+```
+GET api/candidatures/{candidature}
+```
+
+```json
+{
+    "id": 2,
+    "choix": "test",
+    "diplome": "test",
+    "lettre_de_motivation": "test",
+    "releves_de_notes": "test",
+    "user_id": 4,
+    "deleted_at": null,
+    "created_at": "2024-04-25T15:27:48.000000Z",
+    "updated_at": "2024-04-25T15:27:48.000000Z"
+}
+```
+
+#### create candidature
+
+```
+POST /api/candidatures
+```
+
+```json
+{
+        "choix":   "test",
+        "diplome":"tesytt",
+        "lettre_de_motivation":"test",
+        "releves_de_notes":"test",
+        "user_id":7
+}
+```
+
+#### Update candidature
+
+```
+PUT /api/candidatures/1
+```
+
+```json
+{
+        "id": 2,
+        "choix": "nhy",
+        "diplome": "ny",
+        "lettre_de_motivation": "test",
+        "releves_de_notes": "test",
+        "user_id": 2,
+        "deleted_at": null,
+        "created_at": "2024-04-25T15:27:48.000000Z",
+        "updated_at": "2024-05-03T20:20:36.000000Z"
+}
+
+```
+
+#### DELETE candidature
+
+```
+DELETE /api/candidatures/1
+```
+
+```json
+{
+    "message": "Candidature supprimée avec succès"
+}
+
+```
+
+
+
+
+### annonces
+
+#### Get all annonces
+
+```
+GET /api/annonces
+```
+
+```json
+[
+    {
+        "id": 1,
+        "description": "test",
+        "titre": "test",
+        "image": "test",
+        "user_id": 2,
+        "deleted_at": null,
+        "created_at": null,
+        "updated_at": "2024-04-28T13:38:16.000000Z"
+    },
+    {
+        "id": 3,
+        "description": "teer",
+        "titre": "tesy",
+        "image": "tet",
+        "user_id": 1,
+        "deleted_at": null,
+        "created_at": "2024-04-25T14:57:01.000000Z",
+        "updated_at": "2024-04-25T15:01:35.000000Z"
+    }
+]
+```
+
+
+
+#### Get annonces
+
+```
+GET /api/annonces/{annonces}
+```
+
+```json
+{
+    "id": 3,
+    "description": "teer",
+    "titre": "tesy",
+    "image": "tet",
+    "user_id": 1,
+    "deleted_at": null,
+    "created_at": "2024-04-25T14:57:01.000000Z",
+    "updated_at": "2024-04-25T15:01:35.000000Z"
+}
+```
+
+
+#### create annonce
+
+```
+POST /api/annonces
+```
+
+```json
+{
+    "id": 3,
+    "description": "teer",
+    "titre": "tesy",
+    "image": "tet",
+    "user_id": 1,
+    "deleted_at": null,
+    "created_at": "2024-04-25T14:57:01.000000Z",
+    "updated_at": "2024-04-25T15:01:35.000000Z"
+}
+```
+
+#### update annonce
+
+```
+PUT /api/annonces/4
+```
+```json
+{
+    "id": 3,
+    "description": "teer",
+    "titre": "tesy",
+    "image": "tet",
+    "user_id": 1,
+    "deleted_at": null,
+    "created_at": "2024-04-25T14:57:01.000000Z",
+    "updated_at": "2024-04-25T15:01:35.000000Z"
+}
+```
+
+
+
+
+#### delete annonces
+
+```
+DELETE /api/annonces/4
+```
+```json
+{
+    "message": "Annonce supprimée avec succès"
+}
+```
+
+#### Pays
+
+
+
+#### GET all villes d'un pays
+
+```
+GET /api/allvillespays/1
+```
+```json
+[
+    {
+        "id": 1,
+        "titre": "ville1",
+        "pays_id": 1,
+        "deleted_at": null,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 2,
+        "titre": "ville2",
+        "pays_id": 1,
+        "deleted_at": null,
+        "created_at": null,
+        "updated_at": null
+    }
+]
+```
+
+#### GET all pays
+
+```
+GET /api/pays
+```
+```json
+[
+{
+        "id": 1,
+        "titre": "pays1",
+        "deleted_at": null,
+        "created_at": null,
+        "updated_at": "2024-05-02T12:16:47.000000Z"
+    },
+    {
+        "id": 2,
+        "titre": "pays2",
+        "deleted_at": null,
+        "created_at": "2024-05-02T12:13:29.000000Z",
+        "updated_at": "2024-05-02T12:13:29.000000Z"
+    }
+]
+```
+
+
+
+#### GET pays
+
+```
+GET /api/pays/{pays}
+```
+```json
+[
+{
+        "id": 1,
+        "titre": "pays1",
+        "deleted_at": null,
+        "created_at": null,
+        "updated_at": "2024-05-02T12:16:47.000000Z"
+    }
+]
+```
+
+
+#### create pays
+
+```
+POST /api/pays
+```
+```json
+[
+{
+        "id": 1,
+        "titre": "pays1",
+        "deleted_at": null,
+        "created_at": null,
+        "updated_at": "2024-05-02T12:16:47.000000Z"
+    }
+]
+```
+
+
+#### Update pays
+
+```
+POST /api/pays/{pays}
+```
+```json
+[
+{
+        "id": 1,
+        "titre": "pays1",
+        "deleted_at": null,
+        "created_at": null,
+        "updated_at": "2024-05-02T12:16:47.000000Z"
+    }
+]
+```
+
+#### DELETE pays
+
+```
+POST /api/pays/{pays}
+```
+```json
+[
+	{
+		"message": "pays supprimée avec succès"
+	}
+]
+```
+
+
+
+#### villes
+
+
+
+#### GET all villes
+
+```
+GET api/villes
+```
+```json
+[
+	 {
+        "id": 1,
+        "titre": "ville1",
+        "pays_id": 1,
+        "deleted_at": null,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 2,
+        "titre": "ville2",
+        "pays_id": 1,
+        "deleted_at": null,
+        "created_at": null,
+        "updated_at": null
+    }
+]
+```
+
+
+#### GET villes
+
+```
+GET api/villes/{ville}
+```
+```json
+[
+	 {
+    "id": 1,
+    "titre": "ville1",
+    "pays_id": 1,
+    "deleted_at": null,
+    "created_at": null,
+    "updated_at": null
+}
+]
+```
+
+#### create villes
+
+```
+POST api/villes
+```
+```json
+[
+	{
+    "titre": "ville100",
+    "pays_id": 1
+   }
+]
+```
+
+
+#### update villes
+
+```
+PUT api/villes/{ville}
+```
+```json
+[
+	{
+    "titre":"ville100",
+    "pays_id":2
+    
+   }
+]
+```
+
+
+#### delete villes
+
+```
+DELETE api/villes/{ville}
+```
+```json
+
+```
+
+
+
+#### Message
+
+
+#### GET all messages of 2 users
+
+```
+GET api/messages/{user}
+```
+!!token requiered
+
+```json
+[
+	 {
+        "id": 1,
+        "contenu": "mezzef",
+        "id_emetteur": 1,
+        "id_recepteur": 2,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 2,
+        "contenu": "kk,n",
+        "id_emetteur": 1,
+        "id_recepteur": 2,
+        "created_at": null,
+        "updated_at": null
+    }
+]
+```
+
+
+#### create message
+
+```
+POST api/messages/{user}
+```
+!!token requiered
+
+```json
+[
+	{
+    "contenu":"votre message"
+    }  
+]
+```
+
+
+#### ForumDiscussion
+
+#### GET all forum discussions and comments of a university.
+
+
+```
+GET api/forum_discussion_universitaire/{universitaire}
+```
+
+```json
+[
+    {
+        "id": 1,
+        "titre": "testtes",
+        "contenu": "cj fds jsfd sdjkfdsj sdfjkdkfsjeijfsd dsf,fn",
+        "user_id": 2,
+        "deleted_at": null,
+        "created_at": "2024-05-03T13:37:18.000000Z",
+        "updated_at": "2024-05-03T13:37:18.000000Z",
+        "universitaire_id": 1,
+        "commentaires": [
+            {
+                "id": 2,
+                "contenu": "cxv,",
+                "user_id": 4,
+                "forum_discussion_id": 1,
+                "deleted_at": null,
+                "created_at": null,
+                "updated_at": "2024-05-05T17:51:22.000000Z"
+            },
+            {
+                "id": 3,
+                "contenu": "etgf",
+                "user_id": 1,
+                "forum_discussion_id": 1,
+                "deleted_at": null,
+                "created_at": "2024-05-03T14:05:16.000000Z",
+                "updated_at": "2024-05-03T14:05:16.000000Z"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "titre": "kkkkktesttes",
+        "contenu": "ùmmdmfmfcj fds jsfd sdjkfdsj sdfjkdkfsjeijfsd dsf,fn",
+        "user_id": 7,
+        "deleted_at": null,
+        "created_at": "2024-05-03T13:37:35.000000Z",
+        "updated_at": "2024-05-05T17:45:17.000000Z",
+        "universitaire_id": 1,
+        "commentaires": [
+            {
+                "id": 1,
+                "contenu": "etf",
+                "user_id": 8,
+                "forum_discussion_id": 2,
+                "deleted_at": null,
+                "created_at": null,
+                "updated_at": "2024-05-03T14:13:11.000000Z"
+            }
+        ]
+    }
+]
+```
+
+
+
+#### GET all comments of a forum discussion
+
+```
+GET api/forum_discussion_commantaire/{forum}
+```
+
+```json
+[
+	{
+    "id": 2,
+    "titre": "kkkkktesttes",
+    "contenu": "ùmmdmfmfcj fds jsfd sdjkfdsj sdfjkdkfsjeijfsd dsf,fn",
+    "user_id": 7,
+    "deleted_at": null,
+    "created_at": "2024-05-03T13:37:35.000000Z",
+    "updated_at": "2024-05-03T13:39:36.000000Z",
+    "commentaires": [
+        {
+            "id": 2,
+            "contenu": "cxv,",
+            "user_id": 4,
+            "forum_discussion_id": 2,
+            "deleted_at": null,
+            "created_at": null,
+            "updated_at": null
+        }
+      ]
+    } 
+]
+```
+
+
+
+#### GET all forum discussion
+
+```
+GET api/forum_discussion
+```
+
+```json
+[
+	{
+        "id": 1,
+        "titre": "testtes",
+        "contenu": "cj fds jsfd sdjkfdsj sdfjkdkfsjeijfsd dsf,fn",
+        "user_id": 2,
+        "deleted_at": null,
+        "created_at": "2024-05-03T13:37:18.000000Z",
+        "updated_at": "2024-05-03T13:37:18.000000Z"
+    },
+    {
+        "id": 2,
+        "titre": "kkkkktesttes",
+        "contenu": "ùmmdmfmfcj fds jsfd sdjkfdsj sdfjkdkfsjeijfsd dsf,fn",
+        "user_id": 7,
+        "deleted_at": null,
+        "created_at": "2024-05-03T13:37:35.000000Z",
+        "updated_at": "2024-05-03T13:39:36.000000Z"
+    }
+]
+```
+
+
+
+#### create forum discussion
+
+```
+POST api/forum_discussion
+```
+
+```json
+[
+	{
+    "titre":"dfwlfdktesttes",
+    "contenu":"ùmmdmfmfcj fds jsfd sdjkfdsj sdfjkdkfsjeijfsd dsf,fn",
+     "user_id":"7"
+     }
+]
+```
+
+
+
+#### update forum discussion
+
+```
+PUT api/forum_discussion
+```
+
+```json
+[
+	{
+    "titre":"dfwlfdktesttes",
+    "contenu":"ùmmdmfmfcj fds jsfd sdjkfdsj sdfjkdkfsjeijfsd dsf,fn",
+     "user_id":"7"
+     }
+]
+```
+
+
+#### delete forum discussion
+
+```
+DELETE api/forum_discussion
+```
+
+```json
+[
+	{
+    "message": "Forum supprimée avec succès"
+    }
+]
+```
+
+
+
+#### commentaire
+
+
+#### create commentaire
+
+```
+POST api/commantaire
+```
+
+```json
+[
+	{
+    "contenu":"etgf",
+    "user_id":1,
+    "forum_discussion_id":1
+
+    }
+]
+```
+
+
+
+#### update commentaire
+
+```
+PUT api/commantaire/{commentaire}
+```
+
+```json
+[
+	{
+    "contenu":"etgf",
+    "user_id":1,
+    "forum_discussion_id":1
+
+    }
+]
+```
+
+
+#### delete commentaire
+
+```
+DELTE api/commantaire/{commentaire}
+```
+
+```json
+[
+	{
+    "message": "Commentaire supprimée avec succès"
+    }
+]
+```
+
+
+
+#### manager_universitaires
+
+
+
+#### GET all manager universitaires
+
+```
+GET /api/Manageruniversitaires/{manager}
+```
+```json
+[
+     {
+        "id": 2,
+        "adresse": "hjkjghghjghy",
+        "nom": "Université Example",
+        "site_web": "https://www.example.com",
+        "type": "Public",
+        "tel": "+1234567890",
+        "created_at": null,
+        "updated_at": "2024-05-13T12:22:54.000000Z",
+        "image": null,
+        "user_id": 7
+    },
+    {
+        "id": 3,
+        "adresse": "universt",
+        "nom": "Mohammadia",
+        "site_web": "dfgdf",
+        "type": "df",
+        "tel": "5563",
+        "created_at": null,
+        "updated_at": null,
+        "image": null,
+        "user_id": 0
+    }
+]
+```
+
+
+#### add universitaires to manager
+
+```
+POST /api/Manageruniversitaires/{manager}
+```
+
+```json
+body:
+ {
+    "universiteIds": [1, 2, 3]
+ }
+
+[
+     {
+    "message": "Relations insérées avec succès"
+     }
+]
+```
+
+
+#### delete one universitaires manager
+
+```
+delete /Manageruniversitaires/{managerid}/{universiteId}
+```
+
+```json
+
+[
+     {
+    "message": "Relation supprimée avec succès"
+     }
+]
+```
+
+#### multi delete one universitaires manager
+
+```
+delete /api/Manageruniversitaires/multidelet/{managerid}
+```
+
+```json
+body:
+ {
+    "universiteIds": [1, 2, 3]
+ }
+
+[
+     {
+    "message": "Relations supprimée avec succès"
+     }
+]
+```
